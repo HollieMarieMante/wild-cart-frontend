@@ -9,6 +9,15 @@ export default {
   ],
   theme: {
   	extend: {
+		keyframes: {
+			'float-in': {
+			  '0%': { transform: 'translateY(30px)', opacity: '0' },
+			  '100%': { transform: 'translateY(0)', opacity: '1' },
+			}
+		  },
+		  animation: {
+			'float-in': 'float-in 0.7s ease-out forwards'
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

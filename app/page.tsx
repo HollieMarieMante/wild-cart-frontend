@@ -1,10 +1,12 @@
 "use client"
+
 import Footer from "@/components/landingpage/Footer";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 export default function LandingPage() {
   const router = useRouter();
+
   return(
     <>
       <div className="w-full h-dvh items-center flex-col flex">
