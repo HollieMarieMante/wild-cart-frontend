@@ -59,7 +59,6 @@ export default function Login() {
           const userData = await response.json();
     
           if (response.ok) {
-            // Check if password matches
             if (userData.password === formData.password) {
                 const sanitizedUserData = {
                     userId: userData.userId,
@@ -69,11 +68,8 @@ export default function Login() {
                     course: userData.course
                   };
         
-                  // Set session cookie
                   setSessionCookie(sanitizedUserData);
-              // Store user data in localStorage or state management solution
               localStorage.setItem('user', JSON.stringify(userData));
-              // Redirect to dashboard or home page
               router.push('/main');
             } else {
               setErrorMessage('Invalid email or password');
@@ -127,15 +123,16 @@ export default function Login() {
                                     <div className="w-[90%] grid grid-cols-2 gap-3 mb-3">
                                         <Input placeholder="Password"
                                             name="password"
+                                            type="password"
                                             value={formData.password}
                                             onChange={handleChange}
                                             style={{ animationDelay: `${6 * 100}ms` }}
                                             className="col-span-2 placeholder:text-white transition-all duration-700 animate-float-in opacity-0"
                                             required/>
                                     </div>
+                                    {errorMessage && <p className="text-red-500 text-sm mb-3">{errorMessage}</p>}
                                 </div>
 
-                                {errorMessage && <p className="text-red-500 text-sm mb-3">{errorMessage}</p>}
                                 <div className="flex w-full justify-center flex-col items-center">
                                     <Button type="submit" style={{ animationDelay: `${7 * 100}ms` }} disabled={loading} className="w-[80%] mt-5 transition-all duration-700 animate-float-in opacity-0">{loading ? 'Logging in...' : 'Login'}</Button>
                                     <Separator style={{ animationDelay: `${8 * 100}ms` }} className="bg-current my-5 w-[80%] h-[1px] transition-all duration-700 animate-float-in opacity-0"/>
